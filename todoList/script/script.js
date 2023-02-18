@@ -11,7 +11,7 @@ GUIA
 
 // seleciona o elemento <input> do tipo texto
 const input = document.querySelector('input[type="text"]');
-// seleciona o botão da página
+// seleciona o botão da página bn
 const button = document.querySelector('button');
 // seleciona o elemento <ul> (lista não ordenada) da página
 const list = document.querySelector('#list');
@@ -20,6 +20,12 @@ let array = [];
 
 // adiciona um "event listener" (ouvidor de eventos) ao botão
 button.addEventListener('click', () => {
+
+  if (input.value.trim() === '') {
+    // se estiver vazio, exibe uma mensagem para o usuário
+    alert('Por favor, insira um valor na entrada de texto.');
+    return; // interrompe a execução do código
+  } else {
   // adiciona o valor do elemento <input> à matriz de itens
   array.push(input.value);
   // limpa o valor do elemento <input>
@@ -63,4 +69,18 @@ button.addEventListener('click', () => {
 
   // adiciona a <div> à lista não ordenada
   list.appendChild(div);
+}});
+
+// adiciona um "event listener" (ouvidor de eventos) à entrada de texto
+input.addEventListener('keydown', (event) => {
+  // verifica se a tecla pressionada foi a tecla Enter
+  if (event.keyCode === 13) {
+    // evita que a tecla Enter seja inserida no campo de entrada
+    event.preventDefault();
+    // executa o mesmo código que é executado quando o botão é clicado
+    button.click();
+  }
 });
+
+
+
