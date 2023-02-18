@@ -82,5 +82,14 @@ input.addEventListener('keydown', (event) => {
   }
 });
 
+// adiciona um event listener para o evento "keydown" no elemento <body>
+document.querySelector('body').addEventListener('keydown', (event) => {
+  // verifica se a tecla pressionada é a tecla "enter"
+  if (event.key === 'Enter') {
+    // dá o foco para o campo de texto
+    input.focus();
+  }
+});
+
 
 
