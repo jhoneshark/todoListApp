@@ -23,5 +23,13 @@ button.addEventListener('click', () => {
   const li = document.createElement('li');
   li.textContent = array[array.length - 1];
 
+  let imgDelete = document.createElement('img');
+  imgDelete.src = 'imgs/delete.png'
+
+  let imgEdit = document.createElement('img');
+  imgEdit.src = 'imgs/edit.png'
+
   list.appendChild(li);
+  list.appendChild(imgDelete);
+  list.appendChild(imgEdit);
 });
