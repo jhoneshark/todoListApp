@@ -29,6 +29,14 @@ button.addEventListener('click', () => {
   let imgEdit = document.createElement('img');
   imgEdit.src = 'imgs/edit.png'
 
+    // Adiciona um botão ao elemento li para permitir a exclusão
+    const button = document.createElement('button');
+    button.textContent = 'Excluir';
+    button.addEventListener('click', () => {
+        li.remove(); // Remove o elemento li correspondente
+        array.splice(array.indexOf(li.textContent), 1); // Remove o valor do array correspondente
+    });
+
   list.appendChild(li);
   list.appendChild(imgDelete);
   list.appendChild(imgEdit);
