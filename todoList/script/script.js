@@ -1,2 +1,2 @@
-const nome=document.querySelector("#texto");
-
+const texto=document.querySelector("#texto");
+const adicionar=document.querySelector(".adicionar");
