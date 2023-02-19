@@ -78,7 +78,6 @@ function createTaskElement(taskText) {
   return taskDiv;
 }
 
-
 // Declara uma função chamada createTaskButton que cria um novo elemento de botão com um texto de botão e uma função de retorno de chamada para o evento de clique
 function createTaskButton(buttonText, eventFunction) {
   // Cria um novo elemento de botão e atribui o texto do botão passado como parâmetro a ele
@@ -120,17 +119,23 @@ function editTask() {
 }
 
 
-// Declara uma função chamada addSubtask que permite ao usuário adicionar uma subtarefa a uma tarefa existente
 function addSubtask() {
-  // Obtém a div da tarefa pai do botão de adicionar subtarefa clicado
   const taskDiv = this.parentElement;
-
-  // Pede ao usuário para inserir o texto da subtarefa por meio de uma caixa de diálogo e adiciona uma nova span de subtarefa à div da tarefa, se o usuário clicar em OK e o texto da subtarefa não estiver vazio
   const subtaskText = prompt("Digite o texto da subtarefa:");
+
   if (subtaskText !== null && subtaskText.trim() !== '') {
     const subtaskSpan = document.createElement('span');
     subtaskSpan.textContent = '- ' + subtaskText;
-    taskDiv.appendChild(subtaskSpan);
+
+    const subtaskEditButton = createSubtaskButton('Editar', editSubtask);
+    const subtaskDeleteButton = createSubtaskButton('Excluir', deleteSubtask);
+
+    const subtaskDiv = document.createElement('div');
+    subtaskDiv.appendChild(subtaskSpan);
+    subtaskDiv.appendChild(subtaskEditButton);
+    subtaskDiv.appendChild(subtaskDeleteButton);
+
+    taskDiv.appendChild(subtaskDiv);
   }
 }
 
@@ -154,7 +159,6 @@ inputField.addEventListener('keydown', (event) => {
   }
 });
 
-
 // Adiciona um evento de teclado ao elemento body da página
 document.querySelector('body').addEventListener('keydown', (event) => {
   // Verifica se a tecla pressionada é a tecla "Enter"
@@ -163,3 +167,27 @@ document.querySelector('body').addEventListener('keydown', (event) => {
     inputField.focus();
   }
 });
+
+
+function createSubtaskButton(buttonText, eventFunction) {
+  const button = document.createElement('button');
+  button.textContent = buttonText;
+  button.addEventListener('click', eventFunction);
+
+  return button;
+}
+
+function editSubtask() {
+  const subtaskDiv = this.parentElement;
+  const subtaskTextSpan = subtaskDiv.querySelector('span');
+  const newText = prompt("Digite o novo texto para a subtarefa:", subtaskTextSpan.textContent);
+
+  if (newText !== null) {
+    subtaskTextSpan.textContent = '- ' + newText;
+  }
+}
+
+function deleteSubtask() {
+  const subtaskDiv = this.parentElement;
+  subtaskDiv.remove();
+}
