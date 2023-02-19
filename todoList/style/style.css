@@ -1,0 +1,12 @@
+body {
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 50vw;
+    border-radius: 10px;
+    padding: 10px;
+    bottom: 10px;
+    position: absolute;
+    left: 25vw;
+}
